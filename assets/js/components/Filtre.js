@@ -1,4 +1,4 @@
-class Filtres {
+class Filtre {
     #application;
     constructor(application) {
         this.#application = application;
@@ -14,7 +14,15 @@ class Filtres {
         return clone;
     }
 
-    trierParNom(liste) { }
+    trierParNom(liste) {
+        const clone = [...liste];
+
+        clone.sort(function (a, b) {
+            return a.nom - b.nom;
+        });
+
+        return clone;
+    }
 
     render() {
         const gabarit = `<div class="filtres">
@@ -27,4 +35,4 @@ class Filtres {
     }
 }
 
-export default Filtres;
+export default Filtre;
