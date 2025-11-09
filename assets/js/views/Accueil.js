@@ -1,11 +1,14 @@
 import Toast from "../components/Toast.js";
+import Filtre from "../components/Filtre.js";
 
 class Accueil {
     #application = null;
     #pizzas = [];
+    #filtre;
 
     constructor(application) {
         this.#application = application;
+        // this.#filtre = new Filtre(application);
     }
 
     #genererCarte(pizza) {
@@ -52,8 +55,14 @@ class Accueil {
     async render() {
         try {
             this.#pizzas = await this.#application.rechercherPizzas();
+            //trier les résultats
+            //afficher la liste
+
             // Nettoyer le conteneur
             this.#application.conteneurHTML.innerHTML = "";
+
+            // Afficher les filtres
+            // this.#filtre.render();
 
             // Générer le gabarit complet
             const gabarit = `

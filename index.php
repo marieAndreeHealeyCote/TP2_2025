@@ -25,6 +25,7 @@
                 </ul>
             </nav>
         </div>
+        <div class="formulaire__conteneur" data-formulaire-connexion></div>
     </header>
     <main data-application></main>
     <footer>

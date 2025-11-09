@@ -1,6 +1,6 @@
 import Router from "./Router.js";
 import Toast from "./components/Toast.js";
-import Formulaire from "./components/Formulaire.js";
+import FormulaireConnexion from "./components/FormulaireConnexion.js";
 import Filtre from "./components/Filtre.js";
 import Pizza from "./components/Pizza.js";
 import Spinner from "./components/Spinner.js";
@@ -8,11 +8,10 @@ import Spinner from "./components/Spinner.js";
 class Application {
     #conteneurHTML = null;
     #router;
-    #formulaire;
+    #formulaireConnexion;
     #filtre;
     #pizza;
     #utilisateur;
-    #formulaireConnexion;
 
     #spinnerHTML;
 
@@ -21,8 +20,9 @@ class Application {
         this.#conteneurHTML = document.querySelector("[data-application]");
         this.#spinnerHTML = document.querySelector("mon-spinner");
         this.#router = new Router(this);
+        this.#formulaireConnexion = new FormulaireConnexion(this);
 
-        // this.mettreAJourNavigation();
+        this.#formulaireConnexion.render();
     }
     get conteneurHTML() {
         return this.#conteneurHTML;
@@ -30,16 +30,6 @@ class Application {
     get router() {
         return this.#router;
     }
-
-    recupererMenu() { }
-
-    // mettreAJourNavigation() {
-    //     this.#utilisateur = localStorage.getItem("utilisateur") || null;
-
-    //     document.querySelector("[data-admin]").classList.toggle("invisible", !this.#utilisateur);
-    //     this.#formulaireConnexion.classList.toggle("invisible", this.#utilisateur);
-    //     document.querySelector("[data-deconnexion]").classList.toggle("invisible", !this.#utilisateur);
-    // }
 
     async rechercherPizzas() {
         this.#spinnerHTML.setAttribute("msg", "    Veuillez patienter...");
