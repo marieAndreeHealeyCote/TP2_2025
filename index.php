@@ -21,7 +21,7 @@
             <nav>
                 <ul>
                     <li><a href="/" data-link>Voir toutes nos pizzas</a></li>
-                    <li><a href="/admin" data-link>Admin</a></li>
+                    <li><a href="/admin" data-link data-admin>Admin</a></li>
                 </ul>
             </nav>
         </div>

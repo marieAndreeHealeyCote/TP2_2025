@@ -62,16 +62,14 @@ class FormulaireConnexion {
             },
             body: JSON.stringify({ nom, mdp })
         };
-        console.log(config);
 
         const reponse = await fetch("api/utilisateurs/Connexion.php", config);
-        console.log(reponse);
         const resultat = await reponse.json();
 
         console.log(resultat);
         if (reponse.status == "200") {
             //Stocker dans le localstorage
-            localStorage.setItem("utilisateur", resultat.utilisateur);
+            localStorage.setItem("utilisateur", nom);
         } else {
             //Vider le localstorage
             localStorage.removeItem("utilisateur");
@@ -85,11 +83,11 @@ class FormulaireConnexion {
         this.mettreAJourNavigation();
     }
 
-    mettreAJourNavigation(formulaireConnexion) {
+    mettreAJourNavigation() {
         this.#utilisateur = localStorage.getItem("utilisateur") || null;
 
         document.querySelector("[data-admin]").classList.toggle("invisible", !this.#utilisateur);
-        formulaireConnexion.classList.toggle("invisible", this.#utilisateur);
+        this.#formulaireConnexion.classList.toggle("invisible", this.#utilisateur);
         document.querySelector("[data-deconnexion]").classList.toggle("invisible", !this.#utilisateur);
     }
 

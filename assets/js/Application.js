@@ -23,6 +23,7 @@ class Application {
         this.#formulaireConnexion = new FormulaireConnexion(this);
 
         this.#formulaireConnexion.render();
+        this.#formulaireConnexion.mettreAJourNavigation();
     }
     get conteneurHTML() {
         return this.#conteneurHTML;
