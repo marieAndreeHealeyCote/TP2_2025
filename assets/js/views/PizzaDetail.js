@@ -27,8 +27,13 @@ class PizzaDetail {
                     <h3>Description</h3>
                     <p>${pizza.description}</p>
                 </div>
-                
+
                 <div class="pizza-card__ingredients">
+                <h3>Ingrédients</h3>
+                    <p>${pizza.ingredients}</p>
+                </div>
+                
+                <div class="pizza-card__footer">
                     <button class="bouton" data-supprimer>Supprimer le pizza</button>
                     <a href="/" data-link class="bouton">Retour à la liste</a>
                 </div>

@@ -8,13 +8,14 @@ class Router {
     #basename;
     #routes;
     #vueActuelle;
+
     constructor(application) {
         this.#application = application;
         this.#basename = "/interfaceWeb24610/TP2_2025/";
         this.#routes = {
             "": Accueil,
-            admin: PizzaAjout,
-            pizza: PizzaDetail,
+            "/admin": PizzaAjout,
+            "/pizzas/:id": PizzaDetail,
         };
         this.miseAJour();
         document.body.addEventListener("click", this.#onClicLien.bind(this));
@@ -55,12 +56,11 @@ class Router {
 
         const route = tableau.length > 0 ? tableau[0] : "";
         const parametreDynamique = tableau[1];
-        console.log(route);
 
         let Vue = this.#routes[route];
 
         if (Vue) {
-            this.#vueActuelle = new Vue(this.#application, parametreDynamique);
+            this.#vueActuelle = new Vue(this.#application, parametreDynamique, searchParams);
         } else {
             this.#vueActuelle = new Pizza404(this.#application);
         }

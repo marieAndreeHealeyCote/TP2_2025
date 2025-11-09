@@ -47,7 +47,7 @@ class Spinner extends HTMLElement {
             </style>
             <div class="spinner-container">
                 <div class="spinner" data-spinner >
-                🌀
+                🍕
              
                 </div >
                 <p>${this.msg}</p>

@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <mon-spinner msg="Veuillez patienter..."></mon-spinner>
     <header>
         <div class="header-container">
             <h1>🍕 Pizzeria Livraison</h1>
@@ -27,7 +28,7 @@
     </header>
     <main data-application></main>
     <footer>
-        <p>&copy; 2024 Pizzeria Livraison - Tous droits réservés</p>
+        <p>&copy; 2025 Pizzeria Livraison - Tous droits réservés</p>
     </footer>
 </body>
 

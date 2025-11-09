@@ -5,20 +5,27 @@
 @import url("./base/variables.css");
 @import url("./base/typographie.css");
 
+@import url("./components/badge.css");
 @import url("./components/bouton.css");
-@import url("./components/filtres.css");
-@import url("./components/images.css");
+@import url("./components/commande-card.css");
+@import url("./components/degrade.css");
 @import url("./components/favoris.css");
+@import url("./components/filtres.css");
+@import url("./components/formulaire.css");
+@import url("./components/images.css");
+@import url("./components/minuterie.css");
+@import url("./components/pagination.css");
+@import url("./components/pizza-card.css");
+@import url("./components/toast.css");
 @import url("./components/widget.css");
 @import url("./components/youtube.css");
-@import url("./components/minuterie.css");
-@import url("./components/degrade.css");
-@import url("./components/toast.css");
-@import url("./components/formulaire.css");
-@import url("./components/pagination.css");
-@import url("./components/badge.css");
 
 @import url("./layout/principal.css");
 @import url("./layout/grille.css");
 @import url("./layout/header.css");
 @import url("./layout/footer.css");
+
+/*Exception*/
+.invisible {
+  display: none !important;
+}
