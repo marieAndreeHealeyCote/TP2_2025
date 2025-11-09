@@ -60,6 +60,11 @@ form {
     }
   }
 }
+.form-group {
+  label {
+    display: block;
+  }
+}
 
 .formulaire__conteneur {
   margin-top: 2em;

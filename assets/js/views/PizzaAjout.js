@@ -14,7 +14,7 @@ class PizzaAjout {
     #genererFormulaire() {
         const gabarit = `
             <form id="formulaire-ajout">
-                <div class="form">
+                <div class="form-group">
                     <label for="nom">Nom de la pizza :</label>
                     <input type="text" id="nom" name="nom" required max-length="200">
                 </div>
@@ -48,7 +48,7 @@ class PizzaAjout {
         this.#application.conteneurHTML.innerHTML = "";
 
         const gabarit = `
-            <div class="">
+            <div class="form">
                 <h1>Ajouter une pizza </h1>
                 ${this.#genererFormulaire()}
             </div>

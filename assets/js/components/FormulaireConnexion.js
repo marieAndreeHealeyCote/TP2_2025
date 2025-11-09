@@ -30,7 +30,7 @@ class FormulaireConnexion {
                     <button type="submit">Connexion</button>
                 </div>
             </form>
-            <div data-deconnexion class="">
+            <div data-deconnexion>
                 <button  type="button" class="btn-cancel">Déconnexion</button>
             </div>
             `;
