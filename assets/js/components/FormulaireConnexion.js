@@ -12,8 +12,6 @@ class FormulaireConnexion {
         this.#application = application;
         this.#validation = new Validation;
         this.#enregistrementLocal = new EnregistrementLocal;
-
-        // this.mettreAJourNavigation();
     }
 
     render() {

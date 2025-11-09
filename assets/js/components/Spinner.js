@@ -1,3 +1,4 @@
+/* Créateur : Maxime Lacasse :-) */
 class Spinner extends HTMLElement {
     constructor() {
         super();
