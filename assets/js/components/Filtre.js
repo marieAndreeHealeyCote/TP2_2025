@@ -17,7 +17,7 @@ class Filtres {
     trierParNom(liste) { }
 
     render() {
-        const gabarit = `<div>
+        const gabarit = `<div class="filtres">
             <button data-prix>Trier par prix</button>
             <button data-nom>Trier par nom</button>
         </div>`;

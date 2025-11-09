@@ -6,12 +6,12 @@ Vous devrez créer une application web de livraison de pizzas en utilisant une a
 
 L'application doit permettre, sans recharger la page, aux utilisateurs:
 
--   de parcourir le menu et le trier par prix ou par nom
--   de voir le détail de chaque pizza au clic d'une pizza du menu
+- de parcourir le menu et le trier par prix ou par nom
+- de voir le détail de chaque pizza au clic d'une pizza du menu
 
 Elle doit permettre également à l'administrateur:
 
--   d'ajouter des pizzas au menu.
+- d'ajouter des pizzas au menu.
 
 Vous n'avez pas à implémenter le côté serveur. Les scripts PHP pour interagir avec la base de données MySQL sont déjà fournis. Vous devez vous concentrer sur le développement du front-end en JavaScript. Vous devez par contre installer la base de données MySQL en utilisant les scripts SQL fournis. Vous n'avez pas à modifier les scripts PHP, sauf le fichier de configuration de la base de données pour y mettre vos informations de connexion à votre serveur MySQL.
 
@@ -19,15 +19,15 @@ Vous n'avez pas à implémenter le côté serveur. Les scripts PHP pour interagi
 
 L'architecture de l'application est organisée comme suit :
 
--   index.js : Le point d'entrée de l'application qui initialise l'application.
--   Application.js : Le gestionnaire d'état global qui coordonne les services et l'état partagé.
--   Router.js : Le gestionnaire des routes qui écoute les changements d'URL et affiche les vues appropriées.
--   vues/ : Le répertoire contenant les différentes vues/pages de l'application (Accueil, PizzaDetail, PizzaAjout).
--   composants/ : Le répertoire contenant les composants réutilisables (Pizza, Formulaire, Filtre, etc.).
+- index.js : Le point d'entrée de l'application qui initialise l'application.
+- Application.js : Le gestionnaire d'état global qui coordonne les pizzas et l'état partagé.
+- Router.js : Le gestionnaire des routes qui écoute les changements d'URL et affiche les vues appropriées.
+- vues/ : Le répertoire contenant les différentes vues/pages de l'application (Accueil, PizzaDetail, PizzaAjout).
+- composants/ : Le répertoire contenant les composants réutilisables (Pizza, Formulaire, Filtre, etc.).
 
--   api/ : Le répertoire contenant les scripts PHP pour interagir avec la base de données MySQL.
--   api/sql/ : Le répertoire contenant le script SQL pour créer et peupler la base de données. À installer avant de lancer l'application.
--   api/config/database.php : La classe de configuration de la base de données. À modifier avec vos informations de connexion.
+- api/ : Le répertoire contenant les scripts PHP pour interagir avec la base de données MySQL.
+- api/sql/ : Le répertoire contenant le script SQL pour créer et peupler la base de données. À installer avant de lancer l'application.
+- api/config/database.php : La classe de configuration de la base de données. À modifier avec vos informations de connexion.
 
 ## Tâches à réaliser
 
@@ -43,23 +43,23 @@ L'architecture de l'application est organisée comme suit :
 
 1. Implémenter la classe `Application.js` pour gérer l'état global de l'application et instancier le Router.
 
-    - Créer les méthodes pour accéder aux actions des pizzas (récupérer le menu, récupérer une pizza par ID, ajouter une pizza).
+   - Créer les méthodes pour accéder aux actions des pizzas (récupérer le menu, récupérer une pizza par ID, ajouter une pizza).
 
 2. Implémenter le gestionnaire de routes dans `Router.js` pour écouter les changements d'URL. Vous avez trois routes principales à gérer :
 
-    - `/` : Affiche la vue d'accueil avec le menu des pizzas.
-    - `/pizza/:id` : Affiche le détail d'une pizza spécifique.
-    - `/admin` : Affiche le formulaire pour ajouter une nouvelle pizza.
+   - `/` : Affiche la vue d'accueil avec le menu des pizzas.
+   - `/pizza/:id` : Affiche le détail d'une pizza spécifique.
+   - `/admin` : Affiche le formulaire pour ajouter une nouvelle pizza.
 
-    - Créer également une route par défaut pour afficher une page 404 si la route n'existe pas.
+   - Créer également une route par défaut pour afficher une page 404 si la route n'existe pas.
 
 ### 3. Vues
 
 1. Créer les vues suivantes dans le répertoire `views/` :
-    - `AccueilView.js` : Affiche le menu des pizzas en utilisant le composant Pizza pour chaque pizza.
-    - `PizzaDetailView.js` : Affiche les détails d'une pizza spécifique en utilisant le composant Pizza.
-    - `PizzaAjoutView.js` : Affiche un formulaire pour ajouter une nouvelle pizza en utilisant le composant Formulaire.
-    - `Pizza404.js` : Affiche un message qui indique que la page demandée n'existe pas avec un lien pour retourner à l'accueil.
+   - `AccueilView.js` : Affiche le menu des pizzas en utilisant le composant Pizza pour chaque pizza.
+   - `PizzaDetailView.js` : Affiche les détails d'une pizza spécifique en utilisant le composant Pizza.
+   - `PizzaAjoutView.js` : Affiche un formulaire pour ajouter une nouvelle pizza en utilisant le composant Formulaire.
+   - `Pizza404.js` : Affiche un message qui indique que la page demandée n'existe pas avec un lien pour retourner à l'accueil.
 
 ### 4. Composants
 
@@ -86,15 +86,15 @@ Si vous implémentez la modification et la suppression de pizzas dans la vue d'a
 
 Le travail sera évalué selon les critères suivants :
 
--   Juste compréhension des fonctionnalités demandées à l’intérieur du devis (10 %): Est-ce que toutes les fonctionnalités demandées sont présentes et fonctionnelles ?
+- Juste compréhension des fonctionnalités demandées à l’intérieur du devis (10 %): Est-ce que toutes les fonctionnalités demandées sont présentes et fonctionnelles ?
 
--   Utilisation correcte d’un langage de programmation orienté objet côté client (30 %) : Est-ce que le code est bien structuré en classes et objets, avec une bonne séparation des responsabilités ? Est-ce que les concepts de base de la programmation orientée objet sont bien appliqués (encapsulation, héritage, polymorphisme) ?
+- Utilisation correcte d’un langage de programmation orienté objet côté client (30 %) : Est-ce que le code est bien structuré en classes et objets, avec une bonne séparation des responsabilités ? Est-ce que les concepts de base de la programmation orientée objet sont bien appliqués (encapsulation, héritage, polymorphisme) ?
 
--   Gestion adéquate de l’affichage dynamique (20 %): Est-ce que l'application met à jour l'interface utilisateur de manière fluide et réactive en fonction des interactions de l'utilisateur et des changements d'état ?
+- Gestion adéquate de l’affichage dynamique (20 %): Est-ce que l'application met à jour l'interface utilisateur de manière fluide et réactive en fonction des interactions de l'utilisateur et des changements d'état ?
 
--   Traitement et exécution adéquates des réponses synchrones et asynchrones (25 %): Est-ce que l'application gère correctement les appels API et les mises à jour de l'interface utilisateur en fonction des réponses reçues ? Affichage des messages d'erreur ou de succès appropriés ?
+- Traitement et exécution adéquates des réponses synchrones et asynchrones (25 %): Est-ce que l'application gère correctement les appels API et les mises à jour de l'interface utilisateur en fonction des réponses reçues ? Affichage des messages d'erreur ou de succès appropriés ?
 
--   Structure et qualité optimale de la programmation (15 %): Est-ce que le code est bien organisé, lisible et maintenable ? Est-ce que les bonnes pratiques de développement sont respectées ? Est-ce que le code est bien commenté et documenté ?
+- Structure et qualité optimale de la programmation (15 %): Est-ce que le code est bien organisé, lisible et maintenable ? Est-ce que les bonnes pratiques de développement sont respectées ? Est-ce que le code est bien commenté et documenté ?
 
 ## Remise
 

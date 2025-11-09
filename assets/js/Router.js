@@ -14,7 +14,7 @@ class Router {
         this.#routes = {
             "": Accueil,
             admin: PizzaAjout,
-            service: PizzaDetail,
+            pizza: PizzaDetail,
         };
         this.miseAJour();
         document.body.addEventListener("click", this.#onClicLien.bind(this));
