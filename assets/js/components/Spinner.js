@@ -56,8 +56,6 @@ class Spinner extends HTMLElement {
     }
 
     afficher() {
-        console.log("ici");
-
         this.classList.remove("invisible");
     }
 

@@ -28,7 +28,7 @@ class Accueil {
                     </div>
                     <div class="pizza-card__footer">
                         <span class="pizza-card__prix">${pizza.prix}$</span>
-                        <a href="/pizzas/${pizza.id}" data-link="${pizza.id}" class="btn btn-primary">Voir détail</a>
+                        <a href="/pizzas/${pizza.id}" data-link class="btn btn-primary">Voir détail</a>
                     </div>
             
             </div>
@@ -65,16 +65,20 @@ class Accueil {
 
             // Insérer le HTML
             this.#application.conteneurHTML.insertAdjacentHTML("beforeend", gabarit);
+            const pizzasHTML = this.#application.conteneurHTML.querySelectorAll('.pizzas-section [data-link]');
 
             // Attacher les événements
-            // this.#pizzas.forEach((pizza) => {
-            //     const pizzaHtml = document.querySelector('[data-link="' + pizza.id + '"]');
-            //     pizzaHtml.addEventListener('click', this.#application.rechercherPizzaParId(pizza.id));
-            // });
+            pizzasHTML.forEach((pizza) => {
+                const router = this.#application.router;
+                pizza.addEventListener('click', function (evt) {
+                    console.log('pizza detail cliqué');
+                    // router.miseAJour();
+                });
+            });
 
         } catch (erreur) {
             console.log(erreur);
-            new Toast(document.body, erreur.message);
+            // new Toast(document.body, erreur.message);
         }
     }
 }

@@ -14,8 +14,8 @@ class Router {
         this.#basename = "/interfaceWeb24610/TP2_2025/";
         this.#routes = {
             "": Accueil,
-            "/admin": PizzaAjout,
-            "/pizzas/:id": PizzaDetail,
+            "admin": PizzaAjout,
+            "pizzas/:id": PizzaDetail,
         };
         this.miseAJour();
         document.body.addEventListener("click", this.#onClicLien.bind(this));
@@ -58,6 +58,9 @@ class Router {
         const parametreDynamique = tableau[1];
 
         let Vue = this.#routes[route];
+        if (parametreDynamique != undefined) {
+            Vue = this.#routes[route + '/:id'];
+        }
 
         if (Vue) {
             this.#vueActuelle = new Vue(this.#application, parametreDynamique, searchParams);

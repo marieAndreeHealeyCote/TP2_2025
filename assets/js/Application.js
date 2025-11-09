@@ -60,7 +60,7 @@ class Application {
         const reponse = await fetch(`api/pizzas/rechercherUn.php?id=${id}`);
         const resultat = await reponse.json();
 
-        return resultat.data;
+        return resultat;
     }
 
     async ajouterPizza(donnees) {
