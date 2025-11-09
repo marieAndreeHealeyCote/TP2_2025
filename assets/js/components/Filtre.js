@@ -10,7 +10,6 @@ class Filtre {
         clone.sort(function (a, b) {
             return a.prix - b.prix;
         });
-
         return clone;
     }
 
@@ -26,8 +25,8 @@ class Filtre {
 
     render() {
         const gabarit = `<div class="filtres">
-            <button data-prix>Trier par prix</button>
-            <button data-nom>Trier par nom</button>
+            <button class="bouton" data-categorie="prix">Trier par prix</button>
+            <button class="bouton" data-categorie="nom">Trier par nom</button>
         </div>`;
 
         this.#application.conteneurHTML.insertAdjacentHTML("beforeend", gabarit);

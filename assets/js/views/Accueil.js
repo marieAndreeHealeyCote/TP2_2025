@@ -8,7 +8,7 @@ class Accueil {
 
     constructor(application) {
         this.#application = application;
-        // this.#filtre = new Filtre(application);
+        this.#filtre = new Filtre(application);
     }
 
     #genererCarte(pizza) {
@@ -43,48 +43,68 @@ class Accueil {
 
     #genererListe() {
 
-        let grille = '<div class="grille">';
+        let gabarit = `
+        <div class="accueil-container"> 
+            <div class="pizzas-section">
+                <div class="grille">
+        `;
         this.#pizzas.forEach((pizza) => {
-            grille += this.#genererCarte(pizza);
+            gabarit += this.#genererCarte(pizza);
         });
 
-        grille += "</div>";
-        return grille;
+        gabarit += `
+                </div>
+            </div>
+        </div>
+        `;
+
+        this.#application.conteneurHTML.insertAdjacentHTML("beforeend", gabarit);
     }
 
-    async render() {
+    //j'ai cliquer le tri
+    clicFiltre(evenement) {
+        // récupérer spécifiquement l'élément qui a reçu l'événement
+        const filtreHTML = evenement.currentTarget;
+
+        // récupérer la valeur de data-categorie
+        let categorie = filtreHTML.dataset.categorie;
+
+        this.render(categorie)
+    }
+
+    async render(categorie = "") {
         try {
             this.#pizzas = await this.#application.rechercherPizzas();
-            //trier les résultats
-            //afficher la liste
+
+            if (categorie == "prix") {
+                this.#pizzas = this.#filtre.trierParPrix(this.#pizzas);
+            }
+            if (categorie == "nom") {
+                this.#pizzas = this.#filtre.trierParNom(this.#pizzas);
+            }
 
             // Nettoyer le conteneur
             this.#application.conteneurHTML.innerHTML = "";
 
             // Afficher les filtres
-            // this.#filtre.render();
+            this.#filtre.render();
 
-            // Générer le gabarit complet
-            const gabarit = `
-                <div class="accueil-container">
-             
-                    <div class="pizzas-section">
-                        ${this.#genererListe()}
-                    </div>
-                </div>
-            `;
-
-            // Insérer le HTML
-            this.#application.conteneurHTML.insertAdjacentHTML("beforeend", gabarit);
+            // Afficher la liste des pizzas
+            this.#genererListe();
 
             // Attacher les événements
             const pizzasHTML = this.#application.conteneurHTML.querySelectorAll('.pizzas-section [data-link]');
             pizzasHTML.forEach((pizza) => {
                 const router = this.#application.router;
-                pizza.addEventListener('click', function (evt) {
+                pizza.addEventListener('click', function (evenement) {
                     console.log('pizza detail cliqué');
                     // router.miseAJour();
                 });
+            });
+
+            // attacher sur les filtres
+            document.querySelectorAll('[data-categorie]').forEach((filtre) => {
+                filtre.addEventListener("click", this.clicFiltre.bind(this));
             });
 
         } catch (erreur) {
