@@ -1,3 +1,5 @@
+import Toast from "../components/Toast.js";
+
 class Accueil {
     #application = null;
     #pizzas = [];
@@ -65,9 +67,9 @@ class Accueil {
 
             // Insérer le HTML
             this.#application.conteneurHTML.insertAdjacentHTML("beforeend", gabarit);
-            const pizzasHTML = this.#application.conteneurHTML.querySelectorAll('.pizzas-section [data-link]');
 
             // Attacher les événements
+            const pizzasHTML = this.#application.conteneurHTML.querySelectorAll('.pizzas-section [data-link]');
             pizzasHTML.forEach((pizza) => {
                 const router = this.#application.router;
                 pizza.addEventListener('click', function (evt) {
@@ -77,8 +79,7 @@ class Accueil {
             });
 
         } catch (erreur) {
-            console.log(erreur);
-            // new Toast(document.body, erreur.message);
+            new Toast(document.body, erreur.message);
         }
     }
 }

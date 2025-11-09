@@ -12,7 +12,7 @@ class PizzaDetail {
     }
 
     #genererDetail(pizza) {
-        const image = pizza.image_url ? `<img href=${pizza.image_url} alt=${pizza.nom}>` : "";
+        const image = pizza.image_url ? `<img src="assets/img/${pizza.image_url}" alt="${pizza.nom}">` : "";
 
         const gabarit = `
             <div class="pizza-card">
@@ -21,8 +21,8 @@ class PizzaDetail {
                     <span class="pizza-card__prix">${pizza.prix} $</span>
                 </div>
                 
-                ${image}
-                
+                <div class="pizza-card__image">${image}</div>
+
                 <div class="pizza-card__description">
                     <h3>Description</h3>
                     <p>${pizza.description}</p>
@@ -34,8 +34,9 @@ class PizzaDetail {
                 </div>
                 
                 <div class="pizza-card__footer">
-                    <button class="bouton" data-supprimer>Supprimer le pizza</button>
-                    <a href="/" data-link class="bouton">Retour à la liste</a>
+                    <button class="btn bouton" data-supprimer>Supprimer la pizza</button>
+                    <a href="/pizzas-modifier/${pizza.id}" data-link class="btn bouton">Modifier la pizza</a>
+                    <a href="/" data-link class="btn bouton">Retour à la liste</a>
                 </div>
             </div>
         `;
@@ -61,13 +62,14 @@ class PizzaDetail {
         this.#btnSupprimer.addEventListener("click", this.#onClick.bind(this));
     }
     async #onClick(evenement) {
-        const resultat = await this.#application.supprimerpizza(this.#pizza.id);
+        evenement.preventDefault();
+        const resultat = await this.#application.supprimerPizza(this.#pizza.id);
         new Toast(document.body, resultat.message);
         setTimeout(
             function () {
                 this.#application.router.naviguer("/");
             }.bind(this),
-            2000
+            500
         );
     }
 }

@@ -2,6 +2,8 @@ import Accueil from "./views/Accueil.js";
 import Pizza404 from "./views/Pizza404.js";
 import PizzaAjout from "./views/PizzaAjout.js";
 import PizzaDetail from "./views/PizzaDetail.js";
+import PizzaModifier from "./views/PizzaModifier.js";
+
 
 class Router {
     #application;
@@ -11,11 +13,12 @@ class Router {
 
     constructor(application) {
         this.#application = application;
-        this.#basename = "/interfaceWeb24610/TP2_2025/";
+        this.#basename = "/interfaceWeb24610/TP2_2025";
         this.#routes = {
             "": Accueil,
             "admin": PizzaAjout,
             "pizzas/:id": PizzaDetail,
+            "pizzas-modifier/:id": PizzaModifier,
         };
         this.miseAJour();
         document.body.addEventListener("click", this.#onClicLien.bind(this));
@@ -24,7 +27,6 @@ class Router {
 
     #onClicLien(evenement) {
         const declencheur = evenement.target;
-
         if (declencheur.closest("[data-link]")) {
             evenement.preventDefault();
 
@@ -67,7 +69,6 @@ class Router {
         } else {
             this.#vueActuelle = new Pizza404(this.#application);
         }
-
         this.#vueActuelle.render();
     }
 }

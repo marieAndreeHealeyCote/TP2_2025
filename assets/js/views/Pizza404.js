@@ -8,7 +8,7 @@ class Pizza404 {
     render() {
         this.#application.conteneurHTML.innerHTML = "";
         const gabarit = `<div>
-            <h1>Oups! Page non trouvée...</h1>
+            <h1>🍕 Oups! Page non trouvée... 🍕</h1>
             <a href="/" data-link>Retour à l'accueil</a>
         </div>`;
 

@@ -72,13 +72,43 @@ class Application {
             body: JSON.stringify(donnees),
         };
 
-        const reponse = await fetch("api/pizzas/ajouterUn.php", config);
-        const resultat = await reponse.json();
+        try {
+            const reponse = await fetch("api/pizzas/ajouterUn.php", config);
+            const resultat = await reponse.json();
 
-        return resultat.id;
+            if (!reponse.ok) {
+                throw new Error(resultat);
+            }
+
+            return resultat.id;
+
+        } catch (erreur) {
+            new Toast(document.body, erreur.message);
+        }
     }
 
-    modifierPizza() { }
+    async modifierPizza(donnees, id) {
+        const config = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(donnees),
+        };
+
+        try {
+            const reponse = await fetch(`api/pizzas/modifierUn.php?id=${id}`, config);
+            const resultat = await reponse.json();
+
+            if (!reponse.ok) {
+                throw new Error(resultat);
+            }
+
+            return resultat;
+        } catch (erreur) {
+            new Toast(document.body, erreur.message);
+        }
+    }
 
     async supprimerPizza(id) {
         try {

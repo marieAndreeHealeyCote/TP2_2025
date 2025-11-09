@@ -1,41 +1,44 @@
 import Toast from "../components/Toast.js";
 
-class PizzaAjout {
+class PizzaModifier {
     #application = null;
+    #id;
     #champs;
     #donnees = {};
     #formulaire;
     #btnAnnuler;
 
-    constructor(application) {
+    constructor(application, id) {
         this.#application = application;
+        this.#id = id;
     }
 
     #genererFormulaire() {
+        const pizza = this.#donnees;
         const gabarit = `
             <form id="formulaire-ajout">
                 <div class="form">
                     <label for="nom">Nom de la pizza :</label>
-                    <input type="text" id="nom" name="nom" required max-length="200">
+                    <input type="text" id="nom" name="nom" required max-length="200" value="${pizza.nom}">
                 </div>
                 
                 <div class="form-group">
                     <label for="description">Description :</label>
-                    <textarea id="description" name="description" rows="5" required max-length="2000"></textarea>
+                    <textarea id="description" name="description" rows="5" required max-length="2000">${pizza.description}</textarea>
                 </div>
                 
                 <div class="form-group">
                     <label for="prix">Prix ($) :</label>
-                    <input type="number" id="prix" name="prix" step="0.01" min="1" max="90" required>
+                    <input type="number" id="prix" name="prix" step="0.01" min="1" max="90" required value="${pizza.prix}">
                 </div>
                 
                 <div class="form-group">
                     <label for="image_url">URL de l'image :</label>
-                    <input type="text" id="image_url" name="image_url">
+                    <input type="text" id="image_url" name="image_url" value="${pizza.image_url}">
                 </div>
                 
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Ajouter la pizza</button>
+                    <button type="submit" class="btn-submit">Modifier la pizza</button>
                     <a href="/" data-link class="btn-cancel" data-btn-annuler>Annuler</a>
                 </div>
             </form>
@@ -45,11 +48,13 @@ class PizzaAjout {
     }
 
     async render() {
+        this.#donnees = await this.#application.rechercherPizzaParId(this.#id);
+
         this.#application.conteneurHTML.innerHTML = "";
 
         const gabarit = `
             <div class="">
-                <h1>Ajouter une pizza </h1>
+                <h1>Modifier la pizza</h1>
                 ${this.#genererFormulaire()}
             </div>
         `;
@@ -71,22 +76,15 @@ class PizzaAjout {
             }.bind(this)
         );
 
+        const resultat = await this.#application.modifierPizza(this.#donnees, this.#id);
 
-        const resultat = await this.#application.ajouterPizza(this.#donnees);
-
-        if (resultat) {
-            setTimeout(
-                function () {
-                    this.#application.router.naviguer("/pizzas/" + resultat.id);
-                }.bind(this),
-                500
-            );
-        } else {
-            const message = "Erreur lors de la création de la pizza";
-            new Toast(document.body, message);
-        }
-
+        new Toast(document.body, resultat.message);
+        setTimeout(
+            function () {
+                this.#application.router.naviguer("/");
+            }.bind(this),
+            500
+        );
     }
-
 }
-export default PizzaAjout;
+export default PizzaModifier;
